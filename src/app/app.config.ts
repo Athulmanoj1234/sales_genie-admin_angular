@@ -5,15 +5,16 @@ import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideStore } from '@ngrx/store';
 import { authReducer } from './features/store/auth.redcuer';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { refreshInterceptorTsInterceptor } from './core/auth/refresh.interceptor.ts-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes), provideClientHydration(withEventReplay()),
     provideStore({ auth: authReducer }),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([refreshInterceptorTsInterceptor])),
     provideStoreDevtools({
       maxAge: 25, // devtools will keep only last 25 snapshots like last 25 states, ie last 25 dispatched actions
       logOnly: !isDevMode(), //returns whether angular is in development mode if logOnly false then devtools can dispatch, time travel and read state, if logonly true devtools can only view logs

@@ -34,7 +34,7 @@ export class Login {
     e.preventDefault();
     console.log("the register form data:", this.adminData.value);
 
-    this.http.post<LoginResponse>('http://localhost:5122/api/AdminAuth/Login', this.adminData.value, {
+    this.http.post<LoginResponse>("http://localhost:5122/api/AdminAuth/Login", this.adminData.value, {
       withCredentials: true,
     })
       .pipe(catchError((error: Error) => {
@@ -44,7 +44,7 @@ export class Login {
       .subscribe(response => {
         this.store.dispatch(setCredentials({ accessToken: response?.data?.adminAccessToken }));
         console.log(response?.data?.adminAccessToken);
-        console.log("auth state", this.authState);
+        console.log("auth state", this.authState());
       });
   }
 

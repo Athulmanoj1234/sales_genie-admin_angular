@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-auth',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './auth.css',
 })
 export class Auth {
-
+  private http = inject(HttpClient)
+  
+  refresh() {
+    this.http.get('')
+  }
 }

@@ -22,7 +22,7 @@ export const refreshInterceptorTsInterceptor: HttpInterceptorFn = (req, next) =>
 
   const isRefreshing$ = new BehaviorSubject<boolean>(false);
 
-  return next(addTokenHeader(req, authState()?.accessToken)).pipe(catchError((error) => {
+  return next(addTokenHeader(req, authState()?.accessToken)).pipe(catchError((error) => { //we are returning next with modified request
     const isError = error instanceof HttpErrorResponse;
     const isError401 = error.status === 401;
 

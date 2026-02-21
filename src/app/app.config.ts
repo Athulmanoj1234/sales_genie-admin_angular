@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes), provideClientHydration(withEventReplay()),
     provideStore({ auth: authReducer }),
-    provideHttpClient(withInterceptors([refreshInterceptorTsInterceptor])),
+    provideHttpClient(), //withInterceptors([refreshInterceptorTsInterceptor])
     provideStoreDevtools({
       maxAge: 25, // devtools will keep only last 25 snapshots like last 25 states, ie last 25 dispatched actions
       logOnly: !isDevMode(), //returns whether angular is in development mode if logOnly false then devtools can dispatch, time travel and read state, if logonly true devtools can only view logs

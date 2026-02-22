@@ -16,7 +16,7 @@ export class AuthServiceTs {
   private refreshResponse: RefreshResponse | null = null;
 
   refresh() {
-    return this.http.get<RefreshResponse>("http://localhost:5122/api/AdminAuth/Login", { withCredentials: true });
+    return this.http.get<RefreshResponse>("http://localhost:5122/api/AdminAuth/Refresh", { withCredentials: true });
       // .pipe(catchError((err: Error) => {
       //   throw err;
       // }))

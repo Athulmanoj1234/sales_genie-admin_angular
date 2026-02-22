@@ -28,9 +28,9 @@
         </label>
         <input class="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-300" type="password"
           placeholder="Enter password" [formField]="registerForm.adminPassword" />
-        @if (RegisterForm.adminEmail().touched() && RegisterForm.adminEmail().invalid()) {
+        @if (registerForm.adminEmail().touched() && registerForm.adminEmail().invalid()) {
         <ul class="text-red-500 text-sm mt-1 pl-0 list-inside">
-          @for (error of RegisterForm.adminPassword().errors(); track error) {
+          @for (error of registerForm.adminPassword().errors(); track error) {
           <li>{{ error.message }}</li>
           }
         </ul>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, inject, Signal, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -83,6 +83,16 @@ export class Login {
           console.log("auth state", this.authState());
         });
     });
+  }
+
+  isInterceptorWorking() {
+    this.http.get("http://localhost:5122/api/AdminAuth/AdminOnly").pipe(catchError((error) => {
+      console.log("the error while checking interceptor", error);
+      throw error;
+    }))
+    .subscribe((response: any) => {
+      console.log("interceptor checking response", response.data);
+    })
   }
 
 }
